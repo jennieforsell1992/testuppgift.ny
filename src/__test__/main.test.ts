@@ -72,13 +72,15 @@ describe("createNewTodo", () => {
 
 describe("createHtml", () => {
   test("adds in localstorage", () => {
-    let todos: Todo[] = [new Todo("someText", false)];
-
+    let aText: string[] = ["hejhej"];
+    let todos: Todo[] = [];
+    let storage = localStorage.setItem("todos", JSON.stringify(todos));
+    //Lägga localStorage i en variabel? Kolla anteckningar.
     //act
-    localStorage.setItem("todos", JSON.stringify(todos));
+    functions.createHtml(todos);
 
     //assert
-    expect(localStorage.length).toBe(1);
+    expect(storage).toBe(aText);
   });
 
   test("should empty the list before loop", () => {
@@ -105,26 +107,27 @@ describe("createHtml", () => {
   //   });
 });
 
-describe("toggleTodo", () => {
-  test("should call function changeTodo", () => {
-    //Arrange
-    let todos: Todo = new Todo("text", false);
-    let spy = jest.spyOn(addfunctions, "changeTodo").mockReturnValue();
+// describe("toggleTodo", () => {
+//   test("should call function changeTodo", () => {
+//     //Arrange
+//     let todos: Todo = [];
+//     let spy = jest.spyOn(addfunctions, "changeTodo").mockReturnValue();
+//     functions.toggleTodo(todos);
+//     //Act
+//     addfunctions.changeTodo(todos);
+//     //Assert
+//     expect(spy).toBeCalledTimes(1);
+//   });
 
-    //Act
-    addfunctions.changeTodo(todos);
-    //Assert
-    expect(spy).toBeCalledTimes(1);
-  });
-
-  test("should call createHtml", () => {
-    //Arrange
-    let todos: Todo[] = [];
-    let spy = jest.spyOn(functions, "createHtml").mockReturnValue();
-
-    //Act
-    functions.createHtml(todos);
-    //Assert
-    expect(spy).toHaveBeenCalled();
-  });
-});
+//   test("should call createHtml", () => {
+//     //Arrange
+//     let todos: Todo[] = [];
+//     let todosOne: Todo = new Todo("text", false);
+//     let spy = jest.spyOn(functions, "createHtml").mockReturnValue();
+//     functions.toggleTodo(todos);
+//     //Act
+//     functions.createHtml(todos);
+//     //Assert
+//     expect(spy).toHaveBeenCalled();
+//   });
+// });
