@@ -6,7 +6,7 @@
 import * as functions from "./../ts/main";
 import { Todo } from "../ts/models/Todo";
 import { IAddResponse } from "../ts/models/IAddResult";
-import { describe, test, expect } from "@jest/globals";
+import { describe, test, expect, jest } from "@jest/globals";
 import * as addfunctions from "./../ts/functions";
 
 test("should be able to click", () => {
@@ -83,7 +83,7 @@ describe("createHtml", () => {
 
   test("should empty the list before loop", () => {
     //Arrange
-    let todos: Todo[] = [new Todo("someText", false)];
+    let todos: Todo[] = [new Todo("text", false)];
     document.body.innerHTML = `<ul id="todos" class="todo"></ul>`;
 
     //act
@@ -91,5 +91,40 @@ describe("createHtml", () => {
 
     //assert
     expect(document.getElementById("todos")?.innerHTML).toBe("");
+  });
+
+  //   test("should loop todos-list", () => {
+  //     //Arrange
+  //     let todos: Todo[] = [new Todo("text", false)];
+  //     let aText: string = "";
+  //     let newLi = document.createElement("li");
+  //     //Act
+  //     functions.createHtml(todos);
+  //     //Assert
+  //     expect((newLi.innerHTML = aText)).toBe(newLi);
+  //   });
+});
+
+describe("toggleTodo", () => {
+  test("should call function changeTodo", () => {
+    //Arrange
+    let todos: Todo = new Todo("text", false);
+    let spy = jest.spyOn(addfunctions, "changeTodo").mockReturnValue();
+
+    //Act
+    addfunctions.changeTodo(todos);
+    //Assert
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  test("should call createHtml", () => {
+    //Arrange
+    let todos: Todo[] = [];
+    let spy = jest.spyOn(functions, "createHtml").mockReturnValue();
+
+    //Act
+    functions.createHtml(todos);
+    //Assert
+    expect(spy).toHaveBeenCalled();
   });
 });
