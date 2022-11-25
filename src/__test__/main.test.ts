@@ -9,26 +9,6 @@ import { IAddResponse } from "../ts/models/IAddResult";
 import { describe, test, expect, jest } from "@jest/globals";
 import * as addfunctions from "./../ts/functions";
 
-// describe("initTwo", () => {
-//   test("should be able to click", () => {
-//     //Arrange
-//     let spy = jest.spyOn(functions, "createNewTodo").mockReturnValue();
-//     document.body.innerHTML = `<form id="newTodoForm"><button>Skapa</button></form>`;
-//     let todoText: string = "text";
-//     let todos: Todo[] = [];
-
-//     functions.initTwo();
-//     functions.createNewTodo(todoText, todos);
-//     //Act
-//     document.getElementById("newTodoForm")?.onsubmit;
-
-//     //Assert
-//     expect(spy).toHaveBeenCalled();
-//     //
-//     expect(spy).toBeCalledWith(todoText, todos);
-//   });
-// });
-
 describe("createNewTodo", () => {
   test("if the result.success==true", () => {
     //Arrange
@@ -144,7 +124,7 @@ describe("toggleTodo", () => {
 });
 
 describe("clearTodo", () => {
-  test("should run functions createHtml", () => {
+  test("should run function createHtml", () => {
     //Arrange
     let todos: Todo[] = [new Todo("text", false)];
     let spy = jest.spyOn(functions, "createHtml").mockReturnValue();
@@ -156,7 +136,7 @@ describe("clearTodo", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  test("should run functions removeAllTodos", () => {
+  test("should run function removeAllTodos", () => {
     //Arrange
     let todos: Todo[] = [new Todo("text", false)];
     let spy = jest.spyOn(addfunctions, "removeAllTodos").mockReturnValue();
@@ -169,7 +149,7 @@ describe("clearTodo", () => {
   });
 });
 
-test("should be able to click", () => {
+test("should be able to click - clearTodo", () => {
   //Arrange
   let spy = jest.spyOn(functions, "clearTodos").mockReturnValue();
   document.body.innerHTML = `<button type="button" id="clearTodos">Rensa lista</button>`;
@@ -181,3 +161,50 @@ test("should be able to click", () => {
   //Assert
   expect(spy).toHaveBeenCalled();
 });
+
+// describe("initTwo", () => {
+//   test("should be able to submit", () => {
+//     //Arrange
+//     let spy = jest.spyOn(functions, "createNewTodo").mockReturnValue();
+//     document.body.innerHTML = `<form id="newTodoForm"><button>Skapa</button></form>`;
+//     let todoText: string = "text";
+//     let todos: Todo[] = [];
+
+//     functions.initTwo();
+//     //functions.createNewTodo(todoText, todos);
+//     //Act
+//     document.getElementById("newTodoForm")?.onsubmit;
+
+//     //Assert
+//     expect(spy).toHaveBeenCalled();
+//     //
+//     expect(spy).toBeCalledWith(todoText, todos);
+//   });
+// });
+
+// describe("displayError", () => {
+//   test("adds classlist show", () => {
+//     //Arrange
+//     let error: string = "Du måste ange minst två bokstäver";
+//     let show: boolean = true;
+//     document.body.innerHTML = `div id="error" class="error"></div>`;
+
+//     //act
+//     functions.displayError(error, show);
+
+//     //assert
+//     expect(document.getElementById("error")?.classList.add).toBe("show");
+//   });
+
+//   test("removes classlist show", () => {
+//     let error: string = "Du måste ange minst två bokstäver";
+//     let show: boolean = false;
+//     document.body.innerHTML = `div id="error" class="error"></div>`;
+
+//     //act
+//     functions.displayError(error, show);
+
+//     //assert
+//     expect(document.getElementById("error")?.classList.remove).toBe("show");
+//   });
+// });
